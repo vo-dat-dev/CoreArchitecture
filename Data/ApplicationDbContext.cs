@@ -1,7 +1,7 @@
-﻿using AuthenticationApi.Models;
+﻿using CoreArchitecture.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthenticationApi.Data
+namespace CoreArchitecture.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {

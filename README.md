@@ -1,4 +1,6 @@
-﻿Here is a basic `README.md` template for a C# project named CoreArchitecture. It includes sections for project description, features, getting started, and more.
+﻿I think some idea from https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures#traditional-n-layer-architecture-applications
+
+Here is a basic `README.md` template for a C# project named CoreArchitecture. It includes sections for project description, features, getting started, and more.
 
 ```
 # CoreArchitecture

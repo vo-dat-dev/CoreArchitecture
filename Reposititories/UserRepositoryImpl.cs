@@ -1,7 +1,7 @@
-﻿using AuthenticationApi.Data;
-using AuthenticationApi.Models;
+﻿using CoreArchitecture.Data;
+using CoreArchitecture.Models;
 
-namespace AuthenticationApi.Reposititories
+namespace CoreArchitecture.Reposititories
 {
     public class UserRepositoryImpl(ApplicationDbContext context) : IUserRepository
     {

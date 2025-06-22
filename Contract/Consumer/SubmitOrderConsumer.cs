@@ -1,7 +1,6 @@
-﻿using AuthenticationApi.Contract;
-using MassTransit;
+﻿using MassTransit;
 
-namespace AuthenticationApi.Contract.Consumer
+namespace CoreArchitecture.Contract.Consumer
 {
     public class SubmitOrderConsumer : IConsumer<SubmitOrder>
     {

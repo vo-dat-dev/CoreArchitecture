@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-
-namespace AuthenticationApi.Config;
+﻿namespace CoreArchitecture.Config;
 
 public static class UseMiddleware
 {
