@@ -1,4 +1,4 @@
-﻿namespace CoreArchitecture.Contract;
+﻿namespace AuthenticationApi.Contract;
 
 public class SubmitOrder
 {

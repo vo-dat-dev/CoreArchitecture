@@ -1,4 +1,4 @@
-﻿namespace CoreArchitecture.Models
+﻿namespace AuthenticationApi.Models
 {
     public class User
     {

@@ -1,7 +1,7 @@
-﻿using CoreArchitecture.Dtos;
-using CoreArchitecture.Interface;
+﻿using AuthenticationApi.Dtos;
+using AuthenticationApi.Interface;
 
-namespace CoreArchitecture.Implement
+namespace AuthenticationApi.Implement
 {
     public class AuthenticationImpl : IAuthentication
     {

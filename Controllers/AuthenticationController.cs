@@ -1,8 +1,8 @@
-﻿using CoreArchitecture.Interface;
-using CoreArchitecture.State;
+﻿using AuthenticationApi.Interface;
+using AuthenticationApi.State;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CoreArchitecture.Controllers
+namespace AuthenticationApi.Controllers
 {
     [Route("authenticate")]
     [ApiController]

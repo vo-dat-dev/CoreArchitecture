@@ -1,4 +1,4 @@
-﻿namespace CoreArchitecture.Dtos
+﻿namespace AuthenticationApi.Dtos
 {
     public class AuthenticationRequest
     {

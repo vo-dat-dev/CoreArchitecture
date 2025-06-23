@@ -1,6 +1,6 @@
-﻿using CoreArchitecture.Dtos;
+﻿using AuthenticationApi.Dtos;
 
-namespace CoreArchitecture.Interface
+namespace AuthenticationApi.Interface
 {
     public interface IAuthentication
     {

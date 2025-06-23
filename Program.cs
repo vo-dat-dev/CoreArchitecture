@@ -1,10 +1,10 @@
 using System.Reflection;
-using CoreArchitecture.Config;
-using CoreArchitecture.Data;
-using CoreArchitecture.Implement;
-using CoreArchitecture.Interface;
-using CoreArchitecture.Reposititories;
+using AuthenticationApi.Data;
+using AuthenticationApi.Implement;
+using AuthenticationApi.Interface;
+using AuthenticationApi.Reposititories;
 using Microsoft.EntityFrameworkCore;
+using CoreArchitecture.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -16,6 +16,12 @@ builder.Services.AddTransient<IUserRepository, UserRepositoryImpl>();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// builder.
+builder.Services.AddLogging();
+builder.Services.AddSingleton<Startup>();
+var startup = builder.Services.BuildServiceProvider().GetRequiredService<Startup>();
+startup.ConfigurationAuthentication(builder.Services);
+
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen(c =>
 {

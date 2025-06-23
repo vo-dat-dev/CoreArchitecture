@@ -1,4 +1,6 @@
-﻿namespace CoreArchitecture.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AuthenticationApi.Models
 {
     public class TestTestModel
     {

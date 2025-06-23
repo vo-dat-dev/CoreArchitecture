@@ -1,4 +1,6 @@
-﻿namespace CoreArchitecture.Config;
+﻿using Microsoft.AspNetCore.Builder;
+
+namespace CoreArchitecture.Config;
 
 public static class UseMiddleware
 {
