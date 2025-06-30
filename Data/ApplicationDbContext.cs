@@ -1,4 +1,5 @@
 ﻿using AuthenticationApi.Models;
+using CoreArchitecture.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuthenticationApi.Data
@@ -10,5 +11,6 @@ namespace AuthenticationApi.Data
         public DbSet<ProductPrice> ProductPrices { get; set; }
         public DbSet<TestModel> TestModels { get; set; }
         public DbSet<TestTestModel> TestTestModels { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 };

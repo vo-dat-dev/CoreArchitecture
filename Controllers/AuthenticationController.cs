@@ -2,7 +2,7 @@
 using AuthenticationApi.State;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AuthenticationApi.Controllers
+namespace CoreArchitecture.Controllers
 {
     [Route("authenticate")]
     [ApiController]

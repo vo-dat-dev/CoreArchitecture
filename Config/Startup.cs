@@ -1,4 +1,9 @@
-﻿using Microsoft.IdentityModel.Tokens; 
+﻿using System.Reflection;
+using MassTransit.MultiBus;
+using Microsoft.IdentityModel.Tokens;
+using CoreArchitecture.Reposititories.StateMachines;
+using MassTransit;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreArchitecture.Config;
 
@@ -36,5 +41,41 @@ public class Startup
 
                 jwtOptions.MapInboundClaims = false;
             });
+    }
+
+    public void ConfigureServices(IServiceCollection services, ConfigurationManager configuration)
+    {
+        string connectionString = configuration.GetConnectionString("DefaultConnection");
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            _logger.LogInformation("Please configurate MassTransit...");
+            return;
+        }
+
+        _logger.LogInformation("Configuring MassTransit...");
+        services.AddMassTransit(cfg =>
+        {
+            cfg.UsingInMemory((context, config) =>
+            {
+                config.ConfigureEndpoints(context);
+            });
+            cfg.AddSagaStateMachine<OrderStateMachine, Reposititories.StateMachines.OrderState>()
+                .EntityFrameworkRepository(r =>
+                {
+                    r.ConcurrencyMode = ConcurrencyMode.Optimistic; // or use Pessimistic, which does not require RowVersion
+
+                    r.AddDbContext<DbContext, MasstransitSagaDbContext>((provider,builder) =>
+                    {
+                        builder.UseNpgsql(connectionString, m =>
+                        {
+                            m.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name);
+                            m.MigrationsHistoryTable($"__{nameof(MasstransitSagaDbContext)}");
+                        });
+                    });
+
+                    //This line is added to enable PostgreSQL features
+                    r.UsePostgres();
+                });
+        });
     }
 }

@@ -21,6 +21,7 @@ builder.Services.AddLogging();
 builder.Services.AddSingleton<Startup>();
 var startup = builder.Services.BuildServiceProvider().GetRequiredService<Startup>();
 startup.ConfigurationAuthentication(builder.Services);
+startup.ConfigureServices(builder.Services, builder.Configuration);
 
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen(c =>
