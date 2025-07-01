@@ -5,12 +5,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CoreArchitecture.Reposititories.StateMachines;
 
-public class MasstransitSagaDbContext: SagaDbContext
+public class MasstransitSagaDbContext(DbContextOptions options) : SagaDbContext(options)
 {
-    public MasstransitSagaDbContext(DbContextOptions options) : base(options)
-    {
-    }
-
     protected override IEnumerable<ISagaClassMap> Configurations
     {
         get { yield return new OrderStateMap(); }
@@ -18,8 +14,7 @@ public class MasstransitSagaDbContext: SagaDbContext
     
 }
 
-public class OrderStateMap : 
-    SagaClassMap<OrderState>
+public class OrderStateMap : SagaClassMap<OrderState>
 {
     protected override void Configure(EntityTypeBuilder<OrderState> entity, ModelBuilder model)
     {

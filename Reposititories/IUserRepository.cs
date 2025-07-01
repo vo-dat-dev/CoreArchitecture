@@ -1,6 +1,6 @@
-﻿using AuthenticationApi.Models;
+﻿using CoreArchitecture.Models;
 
-namespace AuthenticationApi.Reposititories
+namespace CoreArchitecture.Reposititories
 {
     public interface IUserRepository
     {

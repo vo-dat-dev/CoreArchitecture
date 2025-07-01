@@ -1,5 +1,5 @@
-﻿using AuthenticationApi.Interface;
-using AuthenticationApi.State;
+﻿using CoreArchitecture.Interface;
+using CoreArchitecture.State;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreArchitecture.Controllers

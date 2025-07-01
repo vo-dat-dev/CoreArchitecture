@@ -1,4 +1,4 @@
-﻿namespace AuthenticationApi.Models
+﻿namespace CoreArchitecture.Models
 {
     public class ProductPrice
     {

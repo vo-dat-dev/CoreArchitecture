@@ -1,9 +1,9 @@
-﻿using AuthenticationApi.Interface;
-using AuthenticationApi.Models;
-using AuthenticationApi.Reposititories;
+﻿using CoreArchitecture.Interface;
+using CoreArchitecture.Models;
+using CoreArchitecture.Reposititories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AuthenticationApi.Controllers
+namespace CoreArchitecture.Controllers
 {
     [Route("users")]
     [ApiController]

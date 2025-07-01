@@ -14,11 +14,11 @@ public record OrderShipped(Guid OrderId, string CustomerNumber);
 
 public class OrderStateMachine : MassTransitStateMachine<OrderState>
 {
-    public State Pending { get; private set; } = null!;
-    public State Processing { get; private set; } = null!;
-    public State Completed { get; private set; } = null!;
+    private MassTransit.State Pending { get; set; } = null!;
+    private MassTransit.State Processing { get; set; } = null!;
+    private MassTransit.State Completed { get; set; } = null!;
 
-    public Event<OrderPlaced> OrderPlaced { get; private set; } = null!;
+    private Event<OrderPlaced> OrderPlaced { get; set; } = null!;
     public Event<OrderShipped> OrderShipped { get; private set; } = null!;
 
     public OrderStateMachine()

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AuthenticationApi.Models
+namespace CoreArchitecture.Models
 {
     public class TestTestModel
     {

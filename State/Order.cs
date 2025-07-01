@@ -17,7 +17,7 @@ public enum OrderTrigger
 
 #pragma warning restore CA1050
 
-namespace AuthenticationApi.State
+namespace CoreArchitecture.State
 {
     public class Order
     {

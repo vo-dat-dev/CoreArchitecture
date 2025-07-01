@@ -1,8 +1,8 @@
 using System.Reflection;
-using AuthenticationApi.Data;
-using AuthenticationApi.Implement;
-using AuthenticationApi.Interface;
-using AuthenticationApi.Reposititories;
+using CoreArchitecture.Data;
+using CoreArchitecture.Implement;
+using CoreArchitecture.Interface;
+using CoreArchitecture.Reposititories;
 using Microsoft.EntityFrameworkCore;
 using CoreArchitecture.Config;
 
