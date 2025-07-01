@@ -1,22 +1,17 @@
-﻿using MassTransit;
+﻿using CoreArchitecture.Models;
+using MassTransit;
 
 namespace CoreArchitecture.Reposititories.StateMachines;
-
-public class OrderState : SagaStateMachineInstance
-{
-    public Guid CorrelationId { get; set; }
-    public string Status { get; set; }
-}
 
 public record OrderPlaced(Guid OrderId, string CustomerNumber);
 
 public record OrderShipped(Guid OrderId, string CustomerNumber);
 
-public class OrderStateMachine : MassTransitStateMachine<OrderState>
+public class OrderStateMachine : MassTransitStateMachine<Order>
 {
-    private MassTransit.State Pending { get; set; } = null!;
-    private MassTransit.State Processing { get; set; } = null!;
-    private MassTransit.State Completed { get; set; } = null!;
+    public MassTransit.State Pending { get; private set; }
+    public MassTransit.State Processing { get; private set; }
+    public MassTransit.State Completed { get; private set; }
 
     private Event<OrderPlaced> OrderPlaced { get; set; } = null!;
     public Event<OrderShipped> OrderShipped { get; private set; } = null!;
@@ -29,18 +24,18 @@ public class OrderStateMachine : MassTransitStateMachine<OrderState>
 
         Initially(
             When(OrderPlaced)
-                .Then(context => context.Saga.Status = "Pending")
+                .Then(context => context.Saga.CurrentState = "Pending")
                 .TransitionTo(Pending)
         );
 
         During(Pending,
             When(OrderShipped)
-                .Then(context => context.Saga.Status = "Processing")
+                .Then(context => context.Saga.CurrentState = "Processing")
                 .TransitionTo(Processing));
 
         During(Processing,
             When(OrderShipped)
-                .Then(context => context.Saga.Status = "Completed")
+                .Then(context => context.Saga.CurrentState = "Completed")
                 .TransitionTo(Completed));
     }
 }

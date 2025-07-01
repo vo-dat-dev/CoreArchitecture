@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using CoreArchitecture.Data;
+using CoreArchitecture.Models;
 using MassTransit.MultiBus;
 using Microsoft.IdentityModel.Tokens;
 using CoreArchitecture.Reposititories.StateMachines;
@@ -51,6 +53,9 @@ public class Startup
             _logger.LogInformation("Please configurate MassTransit...");
             return;
         }
+        
+        services.AddDbContext<MasstransitSagaDbContext>(options =>
+            options.UseNpgsql(connectionString)); // or Npgsql for PostgreSQL
 
         _logger.LogInformation("Configuring MassTransit...");
         services.AddMassTransit(cfg =>
@@ -59,11 +64,11 @@ public class Startup
             {
                 config.ConfigureEndpoints(context);
             });
-            cfg.AddSagaStateMachine<OrderStateMachine, Reposititories.StateMachines.OrderState>()
+            cfg.AddSagaStateMachine<OrderStateMachine, Order>()
                 .EntityFrameworkRepository(r =>
                 {
                     r.ConcurrencyMode = ConcurrencyMode.Optimistic; // or use Pessimistic, which does not require RowVersion
-
+                    r.ExistingDbContext<ApplicationDbContext>();
                     r.AddDbContext<DbContext, MasstransitSagaDbContext>((provider,builder) =>
                     {
                         builder.UseNpgsql(connectionString, m =>
