@@ -5,20 +5,22 @@ using CoreArchitecture.Interface;
 using CoreArchitecture.Reposititories;
 using Microsoft.EntityFrameworkCore;
 using CoreArchitecture.Config;
+using CoreArchitecture.Extenstions;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddControllers();
-builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()); });
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+});
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<IAuthentication, AuthenticationImpl>();
 builder.Services.AddTransient<IUserRepository, UserRepositoryImpl>();
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-// builder.
 builder.Services.AddLogging();
 builder.Services.AddSingleton<Startup>();
+
 var startup = builder.Services.BuildServiceProvider().GetRequiredService<Startup>();
 startup.ConfigurationAuthentication(builder.Services);
 startup.ConfigureServices(builder.Services, builder.Configuration);
@@ -30,16 +32,18 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Authentication API",
         Version = "v1",
-        Description = "Authentication API for managing user authentication and authorization",
+        Description = "Authentication API for managing user authentication and authorization"
     });
 });
 
 var app = builder.Build();
+
 app.UseSwagger();
-app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Authentication API"); });
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Authentication API");
+});
 
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -54,5 +58,5 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.EnsureCreated();
 }
 
-app.ConfigureMiddleware();
+app.UsePermissions();
 app.Run();

@@ -4,9 +4,11 @@ namespace CoreArchitecture.Config;
 
 public static class UseMiddleware
 {
+    private const string CustomMiddlewareSetKey = "_CustomMiddlewareSet";
     public static IApplicationBuilder ConfigureMiddleware(this IApplicationBuilder app)
     {
-        Console.WriteLine("Configuring middleware...");
+        ArgumentNullException.ThrowIfNull(app);
+        app.Properties[CustomMiddlewareSetKey] = true;
         app.Use(async (context, next) =>
         {
             // Do work that can write to the Response.

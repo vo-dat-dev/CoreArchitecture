@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CoreArchitecture.Routing;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreArchitecture.Controllers
 {
@@ -7,6 +8,7 @@ namespace CoreArchitecture.Controllers
     public class TreeController : ControllerBase
     {
         [HttpGet]
+        [Public("test", "test")]
         public IActionResult GetTree()
         {
             // This is a placeholder for the actual tree data retrieval logic.
