@@ -1,0 +1,35 @@
+{
+	"vim.enableNeovim": false,
+	"vim.useCtrlKeys": true,
+	"vim.hlsearch": true,
+	"vim.incsearch": true,
+	"vim.easymotion": true,
+	"vim.cursorStylePerMode.insert": "line-thin",
+	"vim.cursorStylePerMode.replace": "line",
+	"vim.cursorStylePerMode.normal": "block",
+	"vim.cursorStylePerMode.visual": "block",
+	"vim.handleKeys": {
+		"<C-c>": false
+	},
+	"vim.normalModeKeyBindingsNonRecursive": [
+		{ "before": [" ", "/"], "commands": [":nohl"] },
+		{ "before": ["Y"], "after": ["y", "$"] },
+		{ "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },
+		{ "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] },
+		{ "before": ["g", "t"], "commands": ["editor.action.goToTypeDefinition"] },
+		{ "before": ["<leader>", "y"], "commands": ["editor.action.clipboardCopyAction"] },
+		{ "before": ["<leader>", "p"], "commands": ["editor.action.clipboardPasteAction"] },
+		{ "before": ["<leader>", "f"], "commands": ["workbench.action.quickOpen"] },
+		{ "before": ["<leader>", "b"], "commands": ["workbench.action.showAllEditors"] },
+		{ "before": ["<leader>", "g"], "commands": ["workbench.view.scm"] }
+	],
+	"vim.leader": " ",
+	"editor.cursorBlinking": "solid",
+	"editor.minimap.enabled": false,
+	"dotnet.server.useOmnisharp": false,
+	"csharp.semanticHighlighting.enabled": true,
+	"csharp.inlayHints.parameters.enabled": true,
+	"csharp.referencesCodeLens.enabled": true,
+	"csharp.testsCodeLens.enabled": true
+}
+

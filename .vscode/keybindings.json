@@ -1,0 +1,18 @@
+[
+	{
+		"key": "ctrl+alt+i",
+		"command": "editor.action.goToImplementation",
+		"when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+	},
+	{
+		"key": "ctrl+alt+t",
+		"command": "editor.action.goToTypeDefinition",
+		"when": "editorHasTypeDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+	},
+	{
+		"key": "ctrl+alt+d",
+		"command": "editor.action.revealDefinition",
+		"when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+	}
+]
+
